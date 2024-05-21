@@ -1,0 +1,12 @@
+.display-container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.display-text {
+    text-align: right;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: rtl;
+}
