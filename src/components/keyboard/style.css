@@ -14,7 +14,7 @@
     border: none;
     aspect-ratio: 1;
     width: 64px;
-    transition: all 0.1s;
+    transition: all 0.05s;
 }
 
 .btn-light {

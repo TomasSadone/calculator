@@ -34,7 +34,14 @@ const Keyboard = ({ setDisplayValue }: Props) => {
     const handleResult = useCallback(() => {
         setDisplayValue((value) => {
             try {
-                return eval(value);
+                let newValue = eval(value);
+                if (typeof newValue === 'number') {
+                    console.log(newValue);
+                    newValue = newValue.toString();
+                } else if (typeof newValue === 'undefined') {
+                    newValue = '';
+                }
+                return newValue;
             } catch {
                 return 'err';
             }
@@ -196,7 +203,7 @@ const Keyboard = ({ setDisplayValue }: Props) => {
                 className='btn-main'
                 onClick={handleInput}
             >
-                X
+                x
             </Button>
             <Button
                 className='btn-light btn-reset'
