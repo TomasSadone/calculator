@@ -6,7 +6,7 @@ type Props = {
     setDisplayValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const validKeys = [
+const validKeys = new Set([
     '0',
     '1',
     '2',
@@ -28,7 +28,8 @@ const validKeys = [
     'C',
     'c',
     'Enter',
-];
+    '.',
+]);
 
 const Keyboard = ({ setDisplayValue }: Props) => {
     const handleResult = useCallback(() => {
@@ -36,7 +37,6 @@ const Keyboard = ({ setDisplayValue }: Props) => {
             try {
                 let newValue = eval(value);
                 if (typeof newValue === 'number') {
-                    console.log(newValue);
                     newValue = newValue.toString();
                 } else if (typeof newValue === 'undefined') {
                     newValue = '';
@@ -52,6 +52,9 @@ const Keyboard = ({ setDisplayValue }: Props) => {
     }, [setDisplayValue]);
     const handleDelete = useCallback(() => {
         setDisplayValue((value) => {
+            if (value == 'err') {
+                return '';
+            }
             try {
                 return value.slice(0, -1);
             } catch {
@@ -65,7 +68,7 @@ const Keyboard = ({ setDisplayValue }: Props) => {
                 if (value === 'err') {
                     return char;
                 } else {
-                    return (value += char);
+                    return value + char;
                 }
             });
         },
@@ -99,7 +102,7 @@ const Keyboard = ({ setDisplayValue }: Props) => {
     );
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (!validKeys.includes(e.key)) {
+            if (!validKeys.has(e.key)) {
                 return;
             }
             handleInput(e.key);

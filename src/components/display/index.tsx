@@ -14,7 +14,10 @@ export const Display = ({ value }: Props) => {
         return formatNumberWithCommas(value);
     }, [value]);
     return (
-        <div className='container display-container'>
+        <div
+            data-testid='display'
+            className='container display-container'
+        >
             <p className='display-text'>{value === '' ? '0' : displayValue}</p>
         </div>
     );
