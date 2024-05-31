@@ -1,13 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react/';
+import { render, screen } from '@testing-library/react/';
+import { clickButton } from './helpers/clickButton';
 import Calculator from '../src/components/calculator';
 
 it('It should do math operations correctly', () => {
     render(<Calculator />);
     const display = screen.getByTestId('display');
-    const clickButton = (name: string) => {
-        const button = screen.getByRole('button', { name });
-        fireEvent.click(button);
-    };
 
     clickButton('2');
     clickButton('+');

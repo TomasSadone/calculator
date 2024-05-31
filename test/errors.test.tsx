@@ -1,11 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { clickButton } from './helpers/clickButton';
 import Calculator from '../src/components/calculator';
 
 describe('It should handle errors as expected', () => {
-    const clickButton = (name: string) => {
-        const button = screen.getByRole('button', { name });
-        fireEvent.click(button);
-    };
     it('Should handle diffrent mathematical errors', () => {
         render(<Calculator />);
         const display = screen.getByTestId('display');
